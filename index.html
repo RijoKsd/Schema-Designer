@@ -17,6 +17,7 @@
     --red: #b91c1c; --red-bg: #fef2f2; --red-border: #fca5a5;
     --purple: #5b21b6; --purple-bg: #f3f0fe; --purple-border: #c4b5fd;
     --pink: #9d174d; --pink-bg: #fdf2f8; --pink-border: #f9a8d4;
+    --teal: #0f6b6b; --teal-bg: #e6f5f5; --teal-border: #80cccc;
     --gray-bg: #f1f0eb; --gray-border: #d1cfc6;
     --radius: 6px; --radius-lg: 10px;
   }
@@ -26,7 +27,7 @@
   .header-title { font-size: 14px; font-weight: 600; }
   .header-sep { flex: 1; }
   .header-tag { font-family: 'IBM Plex Mono', monospace; font-size: 10px; opacity: 0.4; letter-spacing: 0.06em; }
-  .main { max-width: 980px; margin: 0 auto; padding: 28px 20px 60px; }
+  .main { max-width: 1060px; margin: 0 auto; padding: 28px 20px 60px; }
   .meta-row { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
   .meta-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text-faint); letter-spacing: 0.08em; text-transform: uppercase; }
   .table-name-input { font-family: 'Sora', sans-serif; font-size: 20px; font-weight: 600; border: none; border-bottom: 2px solid var(--border-dark); background: transparent; color: var(--text); padding: 4px 2px 6px; width: 240px; outline: none; transition: border-color 0.15s; }
@@ -39,12 +40,14 @@
   .btn:hover { background: var(--bg); border-color: var(--accent); }
   .btn:active { transform: scale(0.97); }
   .btn svg { width: 14px; height: 14px; flex-shrink: 0; }
-  .btn-green { border-color: var(--green-border); background: var(--green-bg); color: var(--green); }
-  .btn-green:hover { background: #d4edda; border-color: var(--green); }
-  .btn-amber { border-color: var(--amber-border); background: var(--amber-bg); color: var(--amber); }
-  .btn-amber:hover { background: #fde8b8; border-color: var(--amber); }
-  .btn-blue { border-color: var(--blue-border); background: var(--blue-bg); color: var(--blue); }
-  .btn-blue:hover { background: #dce6fc; border-color: var(--blue); }
+  .btn-green  { border-color: var(--green-border);  background: var(--green-bg);  color: var(--green);  }
+  .btn-green:hover  { background: #d4edda; border-color: var(--green); }
+  .btn-amber  { border-color: var(--amber-border);  background: var(--amber-bg);  color: var(--amber);  }
+  .btn-amber:hover  { background: #fde8b8; border-color: var(--amber); }
+  .btn-blue   { border-color: var(--blue-border);   background: var(--blue-bg);   color: var(--blue);   }
+  .btn-blue:hover   { background: #dce6fc; border-color: var(--blue); }
+  .btn-red    { border-color: var(--red-border);    background: var(--red-bg);    color: var(--red);    }
+  .btn-red:hover    { background: #fecaca; border-color: var(--red); }
 
   /* vis bar */
   .vis-bar { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 12px 16px; margin-bottom: 14px; display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start; }
@@ -57,23 +60,39 @@
   .vpill.off { background: var(--gray-bg);   border-color: var(--gray-border);  color: var(--text-faint); text-decoration: line-through; opacity: 0.7; }
   .vpill-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
   .vis-divider { width: 1px; background: var(--border); align-self: stretch; flex-shrink: 0; }
-  .vis-reset { font-family: 'Sora', sans-serif; font-size: 11px; border: 1.5px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--text-muted); padding: 4px 10px; cursor: pointer; align-self: flex-end; white-space: nowrap; margin-bottom: 2px; }
+  .vis-reset { font-family: 'Sora', sans-serif; font-size: 11px; border: 1.5px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--text-muted); padding: 4px 10px; cursor: pointer; align-self: flex-end; white-space: nowrap; }
   .vis-reset:hover { background: var(--border-dark); color: var(--text); }
 
   /* schema card */
   .schema-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
   table.st { width: 100%; border-collapse: collapse; }
-  table.st th { background: #faf9f6; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-faint); padding: 10px 12px; text-align: left; border-bottom: 1.5px solid var(--border); white-space: nowrap; }
-  table.st td { padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  table.st th { background: #faf9f6; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-faint); padding: 10px 10px; text-align: left; border-bottom: 1.5px solid var(--border); white-space: nowrap; }
+  table.st td { padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
   table.st tbody tr:last-child td { border-bottom: none; }
-  table.st tbody tr:not(.row-hidden):hover td { background: #faf9f6; }
+  table.st tbody tr:not(.row-hidden):not(.drag-over):hover td { background: #faf9f6; }
   table.st tbody tr.row-hidden td { opacity: 0.25; background: var(--gray-bg) !important; }
+  table.st tbody tr.drag-over td { background: var(--blue-bg) !important; border-top: 2px solid var(--blue) !important; }
+  table.st tbody tr.dragging { opacity: 0.35; }
 
-  /* inputs */
   .col-input, .type-select { width: 100%; font-family: 'Sora', sans-serif; font-size: 13px; border: 1.5px solid transparent; border-radius: var(--radius); padding: 6px 8px; background: transparent; color: var(--text); outline: none; transition: border-color 0.12s, background 0.12s; }
   .col-input:hover, .type-select:hover { border-color: var(--border); background: var(--bg); }
   .col-input:focus, .type-select:focus { border-color: var(--accent); background: var(--surface); }
   .type-select { cursor: pointer; }
+
+  /* FK */
+  .fk-area { padding-top: 2px; }
+  .fk-toggle { display: inline-flex; align-items: center; gap: 5px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; cursor: pointer; color: var(--text-faint); padding: 3px 0; user-select: none; border: none; background: none; }
+  .fk-toggle:hover { color: var(--teal); }
+  .fk-toggle.active { color: var(--teal); font-weight: 500; }
+  .fk-toggle svg { width: 11px; height: 11px; }
+  .fk-fields { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 6px; align-items: center; }
+  .fk-inp { font-family: 'IBM Plex Mono', monospace; font-size: 12px; border: 1.5px solid var(--teal-border); border-radius: var(--radius); padding: 4px 8px; background: var(--teal-bg); color: var(--teal); outline: none; flex: 1; min-width: 70px; }
+  .fk-inp:focus { border-color: var(--teal); }
+  .fk-hint { font-size: 10px; color: var(--text-faint); margin-top: 4px; font-family: 'IBM Plex Mono', monospace; line-height: 1.5; }
+  .fk-badge { display: inline-flex; align-items: center; gap: 4px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; padding: 2px 7px; border-radius: 20px; background: var(--teal-bg); color: var(--teal); border: 1px solid var(--teal-border); margin-top: 5px; }
+  .fk-badge svg { width: 10px; height: 10px; }
+  .fk-remove { background: none; border: none; cursor: pointer; font-size: 13px; color: var(--text-faint); opacity: 0.6; padding: 0 2px; }
+  .fk-remove:hover { opacity: 1; color: var(--red); }
 
   /* pk btn */
   .pk-btn { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--border); background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-faint); transition: all 0.12s; margin: auto; }
@@ -81,26 +100,29 @@
   .pk-btn.active { background: var(--amber-bg); border-color: var(--amber-border); color: var(--amber); }
   .pk-btn svg { width: 12px; height: 12px; }
 
-  /* nn */
   .nn-wrap { display: flex; justify-content: center; padding-top: 8px; }
   input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--blue); cursor: pointer; }
 
-  /* icon btns */
-  .icon-btn { width: 26px; height: 26px; border: 1.5px solid var(--border); border-radius: var(--radius); background: var(--gray-bg); cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-faint); transition: all 0.12s; margin: 2px auto 0; flex-shrink: 0; }
+  .icon-btn { width: 26px; height: 26px; border: 1.5px solid var(--border); border-radius: var(--radius); background: var(--gray-bg); cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-faint); transition: all 0.12s; flex-shrink: 0; }
   .icon-btn:hover { border-color: var(--blue-border); color: var(--blue); background: var(--blue-bg); }
   .icon-btn.off { background: var(--gray-bg); border-color: var(--gray-border); color: var(--text-faint); }
   .icon-btn svg { width: 12px; height: 12px; }
-  .del-btn { width: 26px; height: 26px; border: none; background: none; border-radius: var(--radius); cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-faint); transition: all 0.12s; margin-top: 2px; }
+  .del-btn { width: 26px; height: 26px; border: none; background: none; border-radius: var(--radius); cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-faint); transition: all 0.12s; }
   .del-btn:hover { background: var(--red-bg); color: var(--red); }
   .del-btn svg { width: 13px; height: 13px; }
+
+  .drag-handle { cursor: grab; color: var(--text-faint); padding: 8px 2px; display: flex; align-items: flex-start; justify-content: center; padding-top: 12px; }
+  .drag-handle:active { cursor: grabbing; }
+  .drag-handle:hover { color: var(--text-muted); }
+  .drag-handle svg { width: 13px; height: 13px; }
 
   /* enum */
   .enum-area { padding-top: 2px; }
   .enum-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 6px; }
   .etag { display: inline-flex; align-items: center; gap: 4px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 20px; border: 1px solid var(--gray-border); background: var(--gray-bg); color: var(--text-muted); }
-  .etag.active { background: var(--purple-bg); color: var(--purple); border-color: var(--purple-border); }
-  .etag.inactive { background: var(--gray-bg); color: var(--text-muted); border-color: var(--gray-border); }
-  .etag.invisible { background: var(--pink-bg); color: var(--pink); border-color: var(--pink-border); }
+  .etag.active    { background: var(--purple-bg); color: var(--purple); border-color: var(--purple-border); }
+  .etag.inactive  { background: var(--gray-bg);   color: var(--text-muted); border-color: var(--gray-border); }
+  .etag.invisible { background: var(--pink-bg);   color: var(--pink);   border-color: var(--pink-border); }
   .etag-del { background: none; border: none; cursor: pointer; font-size: 11px; color: inherit; opacity: 0.5; padding: 0; line-height: 1; }
   .etag-del:hover { opacity: 1; }
   .enum-add-row { display: flex; gap: 6px; }
@@ -114,6 +136,14 @@
   .add-row-btn:hover { background: var(--bg); color: var(--text); }
   .add-row-btn svg { width: 14px; height: 14px; }
 
+  /* confirm modal */
+  .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 100; align-items: center; justify-content: center; }
+  .overlay.show { display: flex; }
+  .modal { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 28px 28px 22px; max-width: 380px; width: 90%; box-shadow: 0 8px 32px rgba(0,0,0,0.12); }
+  .modal h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+  .modal p  { font-size: 13px; color: var(--text-muted); margin-bottom: 22px; line-height: 1.6; }
+  .modal-btns { display: flex; gap: 10px; justify-content: flex-end; }
+
   .toast { display: none; margin-top: 14px; padding: 10px 16px; border-radius: var(--radius); font-size: 13px; font-weight: 500; animation: fadeIn 0.2s ease; }
   .toast.ok  { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
   .toast.err { background: var(--red-bg);   color: var(--red);   border: 1px solid var(--red-border); }
@@ -122,19 +152,24 @@
   .sql-section { margin-top: 24px; }
   .sql-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 8px; }
   .sql-box { background: #1a1917; color: #e8e6df; font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.8; padding: 18px 20px; border-radius: var(--radius-lg); white-space: pre-wrap; overflow-x: auto; }
-  .sql-kw { color: #7dd3fc; } .sql-type { color: #86efac; } .sql-col { color: #f9a8d4; }
+  .sql-kw { color: #7dd3fc; } .sql-type { color: #86efac; } .sql-col { color: #f9a8d4; } .sql-ref { color: #fcd34d; }
 
   @media print {
     body { background: #fff; }
     .no-print { display: none !important; }
     .print-only { display: block !important; }
     .main { max-width: 100%; padding: 20px; }
-    .schema-card { border: 1px solid #ccc; }
-    table.st th { background: #f5f5f5; }
+    .schema-card { border: 1px solid #ccc; box-shadow: none; }
+    table.st th { background: #f5f5f5; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     tr.print-exclude { display: none !important; }
     td.col-hide, th.col-hide { display: none !important; }
+    .toast { display: none !important; }
+    .sql-section { display: none !important; }
+    .overlay { display: none !important; }
+    .fk-print-value { display: inline-flex !important; }
   }
   .print-only { display: none; }
+  .fk-print-value { display: none; }
 </style>
 </head>
 <body>
@@ -145,6 +180,18 @@
   <span class="header-sep"></span>
   <span class="header-tag">OFFLINE TOOL</span>
 </header>
+
+<!-- Confirm delete-all modal -->
+<div class="overlay" id="confirmOverlay">
+  <div class="modal">
+    <h3 id="modalTitle">Delete all columns?</h3>
+    <p id="modalMsg">This will remove all columns permanently.</p>
+    <div class="modal-btns">
+      <button class="btn" id="modalCancel">Cancel</button>
+      <button class="btn btn-red" id="modalConfirm">Delete all</button>
+    </div>
+  </div>
+</div>
 
 <div class="main">
   <div class="print-only" style="margin-bottom:24px">
@@ -168,12 +215,16 @@
       </label>
     </div>
     <div class="toolbar-right">
+      <button class="btn btn-red" id="deleteAllBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+        Delete All
+      </button>
       <button class="btn btn-amber" id="saveBtn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Save JSON
       </button>
       <button class="btn btn-green" id="pdfBtn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
         Export PDF
       </button>
       <button class="btn" id="sqlBtn">
@@ -188,7 +239,7 @@
     <div class="vis-group">
       <div class="vis-group-label">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
-        Hide / show columns
+        Hide / show columns in PDF
       </div>
       <div class="vis-pills" id="colPills"></div>
     </div>
@@ -196,7 +247,7 @@
     <div class="vis-group">
       <div class="vis-group-label">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
-        Hide / show rows
+        Hide / show rows from PDF
       </div>
       <div class="vis-pills" id="rowPills"></div>
     </div>
@@ -222,65 +273,90 @@
 </div>
 
 <script>
-const TYPES = ['INT','BIGINT','SMALLINT','VARCHAR','TEXT','CHAR','DATE','DATETIME','TIMESTAMP','BOOLEAN','DECIMAL','FLOAT','DOUBLE','UUID','JSON','BLOB','ENUM'];
+const TYPES = ['INT','BIGINT','SMALLINT','VARCHAR','TEXT','CHAR','DATE','DATETIME','TIMESTAMP','BOOLEAN','DECIMAL','FLOAT','DOUBLE','UUID','JSON','ARRAY','BLOB','ENUM'];
 const ETAG_MAP = { active:'active', inactive:'inactive', invisible:'invisible' };
-
-// hideable table columns (key matches colVis object)
 const TCOLS = [
-  { key:'pk',      label:'PK',              hideable:true  },
-  { key:'name',    label:'Column name',     hideable:true  },
-  { key:'type',    label:'Data type',       hideable:true  },
-  { key:'details', label:'Values/details',  hideable:true  },
-  { key:'nn',      label:'Not null',        hideable:true  },
+  { key:'pk',      label:'PK'             },
+  { key:'name',    label:'Column name'    },
+  { key:'type',    label:'Data type'      },
+  { key:'details', label:'Values/details' },
+  { key:'fk',      label:'Foreign key'    },
+  { key:'nn',      label:'Not null'       },
 ];
 
-let colVis = { pk:true, name:true, type:true, details:true, nn:true };
-
+let colVis = { pk:true, name:true, type:true, details:true, fk:true, nn:true };
 let rows = [
-  { name:'id',         type:'INT',       pk:true,  nn:true,  enumVals:[], rowVis:true },
-  { name:'name',       type:'VARCHAR',   pk:false, nn:true,  enumVals:[], rowVis:true },
-  { name:'status',     type:'ENUM',      pk:false, nn:true,  enumVals:['active','inactive','invisible'], rowVis:true },
-  { name:'created_at', type:'TIMESTAMP', pk:false, nn:false, enumVals:[], rowVis:true },
+  { name:'id',         type:'INT',       pk:true,  nn:true,  enumVals:[], rowVis:true, fkOn:false, fkTable:'', fkCol:'' },
+  { name:'name',       type:'VARCHAR',   pk:false, nn:true,  enumVals:[], rowVis:true, fkOn:false, fkTable:'', fkCol:'' },
+  { name:'status',     type:'ENUM',      pk:false, nn:true,  enumVals:['active','inactive','invisible'], rowVis:true, fkOn:false, fkTable:'', fkCol:'' },
+  { name:'created_at', type:'TIMESTAMP', pk:false, nn:false, enumVals:[], rowVis:true, fkOn:false, fkTable:'', fkCol:'' },
 ];
 
-// Track the newly added row index so we can focus it without re-render stealing focus
 let pendingFocusIdx = null;
+let dragSrcIdx = null;
 
 function etagClass(v){ return ETAG_MAP[v.toLowerCase()]||''; }
 
 function syncBadge(){
   const vis = rows.filter(r=>r.rowVis!==false).length;
   document.getElementById('colCount').textContent =
-    vis===rows.length ? rows.length+' column'+(rows.length!==1?'s':'')
-    : vis+'/'+rows.length+' rows visible';
+    vis===rows.length
+      ? rows.length+' column'+(rows.length!==1?'s':'')
+      : vis+'/'+rows.length+' visible';
 }
 
 function toast(msg,type){
   const el=document.getElementById('toast');
   el.textContent=msg; el.className='toast '+(type||'ok'); el.style.display='block';
-  clearTimeout(el._t); el._t=setTimeout(()=>{el.style.display='none';},3200);
+  clearTimeout(el._t); el._t=setTimeout(()=>{ el.style.display='none'; },3200);
 }
 
-const eyeOn  = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
-const eyeOff = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`;
+const EYE_ON  = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
+const EYE_OFF = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`;
+const DRAG_IC = `<svg viewBox="0 0 20 20" fill="currentColor"><circle cx="7" cy="5"  r="1.2"/><circle cx="13" cy="5"  r="1.2"/><circle cx="7" cy="10" r="1.2"/><circle cx="13" cy="10" r="1.2"/><circle cx="7" cy="15" r="1.2"/><circle cx="13" cy="15" r="1.2"/></svg>`;
+const LINK_IC = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`;
 
-function cs(key){ return colVis[key]===false ? 'display:none' : ''; }
-function cc(key){ return colVis[key]===false ? 'col-hide' : ''; }
+function cs(k){ return colVis[k]===false ? 'display:none' : ''; }
+function cc(k){ return colVis[k]===false ? 'col-hide' : ''; }
 
 function renderHead(){
   const head = document.getElementById('schemaHead');
   head.innerHTML = '';
   const tr = document.createElement('tr');
   tr.innerHTML = `
-    <th style="width:42px;text-align:center;${cs('pk')}" class="${cc('pk')}">PK</th>
-    <th style="width:22%;${cs('name')}" class="${cc('name')}">Column name</th>
-    <th style="width:15%;${cs('type')}" class="${cc('type')}">Data type</th>
+    <th style="width:26px" class="no-print"></th>
+    <th style="width:38px;text-align:center;${cs('pk')}" class="${cc('pk')}">PK</th>
+    <th style="width:20%;${cs('name')}" class="${cc('name')}">Column name</th>
+    <th style="width:13%;${cs('type')}" class="${cc('type')}">Data type</th>
     <th style="${cs('details')}" class="${cc('details')}">Values / details</th>
-    <th style="width:66px;text-align:center;${cs('nn')}" class="${cc('nn')}">Not null</th>
-    <th style="width:34px" class="no-print"></th>
-    <th style="width:32px" class="no-print"></th>
+    <th style="width:195px;${cs('fk')}" class="${cc('fk')}">Foreign key</th>
+    <th style="width:62px;text-align:center;${cs('nn')}" class="${cc('nn')}">Not null</th>
+    <th style="width:30px;text-align:center" class="no-print" title="Show/hide row in PDF">PDF</th>
+    <th style="width:28px" class="no-print"></th>
   `;
   head.appendChild(tr);
+}
+
+function makeFkHtml(r, i){
+  // "no FK" state — only show the add button on screen, nothing in print
+  if(!r.fkOn) return `<button class="fk-toggle no-print" data-fk="${i}" title="Click to set a foreign key reference">${LINK_IC} Set foreign key</button><span class="fk-print-value">—</span>`;
+
+  const refText = `${r.fkTable||'?'}.${r.fkCol||'?'}`;
+  const hasBoth = r.fkTable && r.fkCol;
+
+  return `
+    <button class="fk-toggle active no-print" data-fk="${i}">${LINK_IC} Foreign key set</button>
+    <div class="fk-fields no-print">
+      <input class="fk-inp" data-fktable="${i}" value="${r.fkTable}" placeholder="Table name (e.g. clients)" title="The table this column references" />
+      <input class="fk-inp" data-fkcol="${i}"   value="${r.fkCol}"   placeholder="Column (e.g. id)" title="The column in that table" />
+      <button class="fk-remove" data-removefk="${i}" title="Remove foreign key">✕</button>
+    </div>
+    <div class="fk-hint no-print">Table name → Column name it links to<br>e.g. "clients" → "id"</div>
+    ${hasBoth ? `<div class="fk-badge no-print" style="margin-top:5px">${LINK_IC} → ${refText}</div>` : ''}
+    <div class="fk-print-value" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#0f6b6b;gap:4px;align-items:center">
+      ${LINK_IC} → ${hasBoth ? refText : (r.fkTable||r.fkCol ? (r.fkTable||'?')+'.'+( r.fkCol||'?') : '<em style="opacity:0.5">incomplete</em>')}
+    </div>
+  `;
 }
 
 function renderBody(){
@@ -290,6 +366,8 @@ function renderBody(){
     const isEnum = r.type==='ENUM';
     const hidden = r.rowVis===false;
     const tr = document.createElement('tr');
+    tr.setAttribute('draggable','true');
+    tr.dataset.idx = i;
     if(hidden){ tr.classList.add('row-hidden'); tr.classList.add('print-exclude'); }
 
     const tagsHtml = isEnum ? r.enumVals.map((v,vi)=>
@@ -305,6 +383,7 @@ function renderBody(){
       : `<span class="empty-detail">—</span>`;
 
     tr.innerHTML = `
+      <td class="no-print drag-handle" title="Drag to reorder">${DRAG_IC}</td>
       <td style="text-align:center;padding-top:10px;${cs('pk')}" class="${cc('pk')}">
         <button class="pk-btn ${r.pk?'active':''}" data-pk="${i}">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="15" r="4"/><line x1="11" y1="12" x2="21" y2="2"/><line x1="18" y1="5" x2="21" y2="2"/><line x1="15" y1="8" x2="17" y2="6"/></svg>
@@ -319,20 +398,50 @@ function renderBody(){
         </select>
       </td>
       <td style="${cs('details')}" class="${cc('details')}">${detailHtml}</td>
+      <td style="vertical-align:top;padding-top:8px;${cs('fk')}" class="${cc('fk')}">${makeFkHtml(r,i)}</td>
       <td style="text-align:center;${cs('nn')}" class="${cc('nn')}">
         <div class="nn-wrap"><input type="checkbox" data-nn="${i}" ${r.nn?'checked':''}/></div>
       </td>
-      <td class="no-print" style="padding-top:8px;text-align:center">
-        <button class="icon-btn ${hidden?'off':''}" data-roweye="${i}" title="${hidden?'Show row':'Hide row'}">
-          ${hidden?eyeOff:eyeOn}
+      <td class="no-print" style="text-align:center;padding-top:9px">
+        <button class="icon-btn ${hidden?'off':''}" data-roweye="${i}" title="${hidden?'Hidden from PDF':'Visible in PDF'}">
+          ${hidden?EYE_OFF:EYE_ON}
         </button>
       </td>
       <td class="no-print" style="padding-top:8px">
-        <button class="del-btn" data-del="${i}">
+        <button class="del-btn" data-del="${i}" title="Delete column">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
         </button>
       </td>
     `;
+
+    // Drag events
+    tr.addEventListener('dragstart', e => {
+      dragSrcIdx = i;
+      setTimeout(() => tr.classList.add('dragging'), 0);
+      e.dataTransfer.effectAllowed = 'move';
+    });
+    tr.addEventListener('dragend', () => {
+      tr.classList.remove('dragging');
+      document.querySelectorAll('.drag-over').forEach(r=>r.classList.remove('drag-over'));
+    });
+    tr.addEventListener('dragover', e => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      document.querySelectorAll('.drag-over').forEach(r=>r.classList.remove('drag-over'));
+      tr.classList.add('drag-over');
+    });
+    tr.addEventListener('dragleave', () => tr.classList.remove('drag-over'));
+    tr.addEventListener('drop', e => {
+      e.preventDefault();
+      tr.classList.remove('drag-over');
+      if(dragSrcIdx === null || dragSrcIdx === i) return;
+      const moved = rows.splice(dragSrcIdx,1)[0];
+      rows.splice(i,0,moved);
+      dragSrcIdx = null;
+      render(true);
+      toast('✓ Row reordered.');
+    });
+
     body.appendChild(tr);
   });
 }
@@ -340,7 +449,7 @@ function renderBody(){
 function renderPills(){
   const cp = document.getElementById('colPills');
   cp.innerHTML='';
-  TCOLS.filter(c=>c.hideable).forEach(c=>{
+  TCOLS.forEach(c=>{
     const on = colVis[c.key]!==false;
     const p = document.createElement('span');
     p.className='vpill '+(on?'on':'off');
@@ -352,9 +461,9 @@ function renderPills(){
   const rp = document.getElementById('rowPills');
   rp.innerHTML='';
   rows.forEach((r,i)=>{
-    const label=r.name||('row '+(i+1));
-    const on=r.rowVis!==false;
-    const p=document.createElement('span');
+    const label = r.name||('row '+(i+1));
+    const on = r.rowVis!==false;
+    const p = document.createElement('span');
     p.className='vpill '+(on?'on':'off');
     p.innerHTML=`<span class="vpill-dot"></span>${label}`;
     p.onclick=()=>{ rows[i].rowVis=!on; renderBody(); renderPills(); syncBadge(); };
@@ -363,61 +472,73 @@ function renderPills(){
 }
 
 function render(skipFocus){
-  renderHead();
-  renderBody();
-  renderPills();
-  syncBadge();
+  renderHead(); renderBody(); renderPills(); syncBadge();
   if(!skipFocus && pendingFocusIdx!==null){
-    const inp = document.querySelector(`.col-input[data-name="${pendingFocusIdx}"]`);
+    const inp=document.querySelector(`.col-input[data-name="${pendingFocusIdx}"]`);
     if(inp){ inp.focus(); inp.select(); }
     pendingFocusIdx=null;
   }
 }
 
-/* ── Event delegation on tbody ── */
+/* ── Event delegation ── */
 document.getElementById('schemaBody').addEventListener('click', e=>{
-  const pk  = e.target.closest('[data-pk]');
-  const del = e.target.closest('[data-del]');
-  const etD = e.target.closest('.etag-del');
-  const eA  = e.target.closest('.enum-add-btn');
-  const eye = e.target.closest('[data-roweye]');
+  const pk      = e.target.closest('[data-pk]');
+  const del     = e.target.closest('[data-del]');
+  const etD     = e.target.closest('.etag-del');
+  const eA      = e.target.closest('.enum-add-btn');
+  const eye     = e.target.closest('[data-roweye]');
+  const fkTog   = e.target.closest('[data-fk]');
+  const rmFk    = e.target.closest('[data-removefk]');
+
   if(pk){
     e.preventDefault();
     const i=+pk.dataset.pk; rows[i].pk=!rows[i].pk; if(rows[i].pk) rows[i].nn=true;
     renderBody(); renderPills(); updateSQL();
   } else if(del){
-    const i=+del.dataset.del; if(rows.length>1){ rows.splice(i,1); render(true); }
+    const i=+del.dataset.del;
+    if(rows.length>1){ rows.splice(i,1); render(true); updateSQL(); }
+    else toast('Cannot delete the last column.','err');
   } else if(etD){
-    const i=+etD.dataset.i, vi=+etD.dataset.vi; rows[i].enumVals.splice(vi,1);
-    renderBody(); updateSQL();
+    const i=+etD.dataset.i, vi=+etD.dataset.vi;
+    rows[i].enumVals.splice(vi,1); renderBody(); updateSQL();
   } else if(eA){
     addEnumVal(+eA.dataset.i);
   } else if(eye){
     const i=+eye.dataset.roweye; rows[i].rowVis=!rows[i].rowVis;
     renderBody(); renderPills(); syncBadge();
+  } else if(fkTog){
+    const i=+fkTog.dataset.fk; rows[i].fkOn=!rows[i].fkOn;
+    renderBody(); updateSQL();
+  } else if(rmFk){
+    const i=+rmFk.dataset.removefk;
+    rows[i].fkOn=false; rows[i].fkTable=''; rows[i].fkCol='';
+    renderBody(); updateSQL();
   }
 });
 
-/* ── Listen for changes WITHOUT re-rendering (fixes focus bug) ── */
 document.getElementById('schemaBody').addEventListener('change', e=>{
   const n  = e.target.closest('[data-name]');
   const t  = e.target.closest('[data-type]');
   const nn = e.target.closest('[data-nn]');
-  if(n)  rows[+n.dataset.name].name = e.target.value;
+  if(n)  rows[+n.dataset.name].name=e.target.value;
   else if(t){ rows[+t.dataset.type].type=e.target.value; renderBody(); renderPills(); }
   else if(nn) rows[+nn.dataset.nn].nn=e.target.checked;
   updateSQL();
 });
 
-/* Key fix: on input just update data model, update pills lazily, DON'T re-render the whole table */
 document.getElementById('schemaBody').addEventListener('input', e=>{
-  const n = e.target.closest('[data-name]');
+  const n   = e.target.closest('[data-name]');
+  const fkt = e.target.closest('[data-fktable]');
+  const fkc = e.target.closest('[data-fkcol]');
   if(n){
-    rows[+n.dataset.name].name = e.target.value;
-    // debounce pill update so typing isn't interrupted
+    rows[+n.dataset.name].name=e.target.value;
     clearTimeout(document._pillTimer);
-    document._pillTimer = setTimeout(()=>{ renderPills(); syncBadge(); }, 300);
+    document._pillTimer=setTimeout(()=>{ renderPills(); syncBadge(); },300);
     updateSQL();
+  } else if(fkt){
+    rows[+fkt.dataset.fktable].fkTable=e.target.value; updateSQL();
+  } else if(fkc){
+    rows[+fkc.dataset.fkcol].fkCol=e.target.value; updateSQL();
   }
 });
 
@@ -436,80 +557,118 @@ function addEnumVal(i){
 }
 
 document.getElementById('addRowBtn').onclick = ()=>{
-  rows.push({name:'',type:'VARCHAR',pk:false,nn:false,enumVals:[],rowVis:true});
-  pendingFocusIdx = rows.length-1;
+  rows.push({name:'',type:'VARCHAR',pk:false,nn:false,enumVals:[],rowVis:true,fkOn:false,fkTable:'',fkCol:''});
+  pendingFocusIdx=rows.length-1;
   render();
 };
 
 document.getElementById('tableName').addEventListener('input', updateSQL);
 
+/* ── Delete All ── */
+document.getElementById('deleteAllBtn').onclick = ()=>{
+  document.getElementById('modalMsg').textContent=
+    'This will permanently delete all '+rows.length+' column'+(rows.length!==1?'s':'')+'. This cannot be undone.';
+  document.getElementById('confirmOverlay').classList.add('show');
+};
+document.getElementById('modalCancel').onclick  = ()=> document.getElementById('confirmOverlay').classList.remove('show');
+document.getElementById('modalConfirm').onclick = ()=>{
+  rows=[]; document.getElementById('confirmOverlay').classList.remove('show');
+  render(true); updateSQL(); toast('All columns deleted.');
+};
+document.getElementById('confirmOverlay').addEventListener('click', e=>{
+  if(e.target===document.getElementById('confirmOverlay'))
+    document.getElementById('confirmOverlay').classList.remove('show');
+});
+
+/* ── Reset visibility ── */
 document.getElementById('resetVisBtn').onclick = ()=>{
-  colVis={pk:true,name:true,type:true,details:true,nn:true};
+  colVis={pk:true,name:true,type:true,details:true,fk:true,nn:true};
   rows.forEach(r=>r.rowVis=true);
-  render(true); toast('✓ All visibility reset.');
+  render(true); toast('✓ Visibility reset.');
 };
 
-/* Save JSON */
+/* ── Save JSON ── */
 document.getElementById('saveBtn').onclick = ()=>{
   try{
     const tName=document.getElementById('tableName').value.trim()||'my_table';
-    const blob=new Blob([JSON.stringify({tableName:tName,savedAt:new Date().toISOString(),colVis,columns:rows},null,2)],{type:'application/json'});
+    const data={tableName:tName,savedAt:new Date().toISOString(),colVis,columns:rows};
+    const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
     const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=tName+'_schema.json'; a.click();
+    setTimeout(()=>URL.revokeObjectURL(a.href),2000);
     toast('✓ JSON saved!');
   }catch(e){ toast('Save failed: '+e.message,'err'); }
 };
 
-/* Load JSON */
+/* ── Load JSON ── */
 document.getElementById('fileInput').onchange = e=>{
   const file=e.target.files[0]; if(!file) return;
   const reader=new FileReader();
   reader.onload=ev=>{
     try{
       const data=JSON.parse(ev.target.result);
-      if(!Array.isArray(data.columns)) throw new Error('Invalid format');
+      if(!Array.isArray(data.columns)) throw new Error('Invalid format — columns array missing');
       document.getElementById('tableName').value=data.tableName||'';
       if(data.colVis) colVis={...colVis,...data.colVis};
-      rows=data.columns.map(c=>({name:c.name||'',type:c.type||'VARCHAR',pk:!!c.pk,nn:!!c.nn,enumVals:Array.isArray(c.enumVals)?c.enumVals:[],rowVis:c.rowVis!==false}));
+      rows=data.columns.map(c=>({
+        name:c.name||'', type:c.type||'VARCHAR', pk:!!c.pk, nn:!!c.nn,
+        enumVals:Array.isArray(c.enumVals)?c.enumVals:[], rowVis:c.rowVis!==false,
+        fkOn:!!c.fkOn, fkTable:c.fkTable||'', fkCol:c.fkCol||''
+      }));
       render(true); updateSQL(); toast('✓ Schema loaded!');
     }catch(err){ toast('Load failed: '+err.message,'err'); }
   };
   reader.readAsText(file); e.target.value='';
 };
 
-/* Export PDF */
+/* ── Export PDF ── */
 document.getElementById('pdfBtn').onclick = ()=>{
   const tName=document.getElementById('tableName').value.trim()||'my_table';
-  const visRows=rows.filter(r=>r.rowVis!==false).length;
-  const hidRows=rows.length-visRows;
-  const hidCols=Object.values(colVis).filter(v=>v===false).length;
+  const vis=rows.filter(r=>r.rowVis!==false).length;
+  const hid=rows.length-vis;
+  const hidC=Object.values(colVis).filter(v=>v===false).length;
   const date=new Date().toLocaleDateString('en-IN',{year:'numeric',month:'long',day:'numeric'});
   document.getElementById('print-title').textContent=tName;
   document.getElementById('print-meta').textContent=
-    visRows+' row'+(visRows!==1?'s':'')+' exported'
-    +(hidRows>0?' · '+hidRows+' hidden':'')
-    +(hidCols>0?' · '+hidCols+' col'+(hidCols!==1?'s':'')+' hidden':'')
+    vis+' row'+(vis!==1?'s':'')+' exported'
+    +(hid>0?' · '+hid+' hidden':'')
+    +(hidC>0?' · '+hidC+' col'+(hidC!==1?'s':'')+' hidden':'')
     +'  ·  '+date;
   window.print();
-  toast('✓ Print dialog opened.');
+  toast('✓ Print dialog opened — choose "Save as PDF".');
 };
 
-function typeStr(r){ if(r.type==='ENUM'&&r.enumVals.length) return `ENUM('${r.enumVals.join("','")}')`;return r.type; }
-function updateSQL(){ const s=document.getElementById('sqlSection'); if(s.style.display==='none') return; buildSQL(); }
+/* ── SQL Preview ── */
+function typeStr(r){
+  if(r.type==='ENUM'&&r.enumVals.length) return `ENUM('${r.enumVals.join("','")}')`;
+  if(r.type==='ARRAY') return `JSON /* ARRAY */`;
+  return r.type;
+}
+function updateSQL(){ if(document.getElementById('sqlSection').style.display==='none') return; buildSQL(); }
 function buildSQL(){
   const tName=document.getElementById('tableName').value.trim()||'my_table';
-  const lines=rows.map(r=>{
+  const colLines=rows.map(r=>{
     const col=r.name||'column', type=typeStr(r);
-    let line=`  <span class="sql-col">${col}</span> <span class="sql-type">${type}</span>`;
-    if(r.pk) line+=` <span class="sql-kw">PRIMARY KEY</span>`;
-    else if(r.nn) line+=` <span class="sql-kw">NOT NULL</span>`;
-    return line;
+    let l=`  <span class="sql-col">${col}</span> <span class="sql-type">${type}</span>`;
+    if(r.pk) l+=` <span class="sql-kw">PRIMARY KEY</span>`;
+    else if(r.nn) l+=` <span class="sql-kw">NOT NULL</span>`;
+    return l;
   });
-  document.getElementById('sqlBox').innerHTML=`<span class="sql-kw">CREATE TABLE</span> ${tName} (\n`+lines.join(',\n')+`\n);`;
+  const fkLines=rows
+    .filter(r=>r.fkOn&&r.fkTable&&r.fkCol)
+    .map(r=>`  <span class="sql-kw">FOREIGN KEY</span> (<span class="sql-col">${r.name||'col'}</span>) <span class="sql-kw">REFERENCES</span> <span class="sql-ref">${r.fkTable}</span>(<span class="sql-col">${r.fkCol}</span>)`);
+  const all=[...colLines,...fkLines];
+  document.getElementById('sqlBox').innerHTML=
+    `<span class="sql-kw">CREATE TABLE</span> ${tName} (\n`+all.join(',\n')+`\n);`;
 }
 document.getElementById('sqlBtn').onclick = ()=>{
   const sec=document.getElementById('sqlSection');
-  if(sec.style.display==='none'){buildSQL();sec.style.display='block';document.getElementById('sqlBtn').textContent='Hide SQL';}
-  else{sec.style.display='none';document.getElementById('sqlBtn').innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> Preview SQL`;}
+  if(sec.style.display==='none'){
+    buildSQL(); sec.style.display='block';
+    document.getElementById('sqlBtn').textContent='Hide SQL';
+  } else {
+    sec.style.display='none';
+    document.getElementById('sqlBtn').innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> Preview SQL`;
+  }
 };
 
 render(true);
